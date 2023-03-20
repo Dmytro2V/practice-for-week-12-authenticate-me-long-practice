@@ -9,7 +9,7 @@ const router = express.Router();
 router.post('/', async (req, res, next) => {
     const { credential, password } = req.body;
     console.log('credential, password from post', credential, password);
-    const user = await User.login(credential, password);
+    const user = await User.login({credential, password});
     if (!user) {
         const err = new Error('Login failed');
         err.status = 401;
@@ -32,7 +32,20 @@ router.delete(
     }
   );
 
-
+// Restore session user
+router.get(
+    '/',
+    restoreUser,
+    (req, res) => {
+      const { user } = req;
+      if (user) {
+        return res.json({
+          user: user.toSafeObject()
+        });
+      } else return res.json({});
+    }
+  );
+  
 
 
 

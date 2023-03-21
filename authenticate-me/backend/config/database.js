@@ -10,6 +10,17 @@ module.exports = {
     typeValidation: true
   },
   production: {
+    storage: config.dbFile,
+    dialect: "sqlite",
+    seederStorage: "sequelize",
+    logQueryParameters: true,
+    typeValidation: true
+
+  }
+};
+
+    /*
+  production: {
     use_env_variable: 'DATABASE_URL',
     dialect: 'postgres',
     seederStorage: 'sequelize',
@@ -21,3 +32,4 @@ module.exports = {
     }
   }
 };
+*/

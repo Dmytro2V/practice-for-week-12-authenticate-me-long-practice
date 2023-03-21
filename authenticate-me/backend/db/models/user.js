@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       });
       if (user && user.validatePassword(password)) {
         let ret =  await User.scope('currentUser').findByPk(user.id);
-        console.log('user in model login ', ret );
+        
         return ret
       }
     }
